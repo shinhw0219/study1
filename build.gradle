@@ -7,33 +7,50 @@ plugins {
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
+
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+		languageVersion = JavaLanguageVersion.of(21) // 자바 버전을 나타냄.
 	}
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
+	compileOnly {//선언한 라이브러리(Lombok 등)이->
+		extendsFrom annotationProcessor //의존성 범위 설정, 얘로 작동하게 확장해주는 설정임.
+
 	}
 }
 
 repositories {
-	mavenCentral()
-}
+	mavenCentral()//라이브러리를 어디서 받아올지 정하는 저장소 설정.(중앙 저장소인 Maven Central)에서 찾게 해줌.
+}//이게 없으면 의존성을 받을 수 없음.
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.mysql:mysql-connector-j'
 
-
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//Spring Boot starters
+	//implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'//얘랑
+	//JDBC 기반으로 DB랑 연결하고 SQL 직접 다룰 때 쓰는 스타터
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//	runtimeOnly 'mysql:mysql-connector-java'
+	//JPA- Java persistence API 를 쉽게 쓰게 해주는 스타터임., 엔티티 개체를 데이터 베이스 테이블과 연결해서 CRUD
+	//얘는 중복이 될 수 있어서 필요에 따라 하나만 써도 됨. 하지만 둘 다 쓰는 목적이 다르면 괜찮음.
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	//얘는 웹 애플리케이션 만들 때 필요한 기본 라이브러리들을 묶어서 놓은 스타터 패키지(웹 요청 처리, 내장 톰캣 서버, Json변환)
+
+	//Lombook
+	compileOnly 'org.projectlombok:lombok'
+	//@Getter, @Setter, @Builder, @NoArgsConstructor 같은 어노테이션을 사용 가능하게 해줌
+	annotationProcessor 'org.projectlombok:lombok'
+	//Lombok 어노테이션을 처리해주는 프로세서 (소스 코드 자동 생성)
+
+	//Database
+    runtimeOnly 'com.mysql:mysql-connector-j'//MySQL DB랑 연결할 수 있게 해주는 드라이버 (JDBC 드라이버)
+
+	//Test
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//테스트용 도구들을 한꺼번에 넣어주는 스타터
+
+//	runtimeOnly 'mysql:mysql-connector-java' 얘보다는
+//	runtimeOnly 'com.mysql:mysql-connector-j' 얘가 최신이라 이걸로 충분함.
 
 
 }
