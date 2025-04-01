@@ -115,4 +115,6 @@ public class PostController {
         return ResponseEntity.ok().build();
     }
 }
+// commit 연습
+// commit 연습 2
 //Spring Boot에서 @RestController를 사용하면 기본적으로 HttpMessageConverter를 통해 Java 객체가 JSON으로 자동 직렬화됩니다
