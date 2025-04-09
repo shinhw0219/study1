@@ -1,4 +1,4 @@
-package com.example.practice.dto;
+package com.example.practice.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,4 +13,5 @@ public class PostUpdateRequest {
     private String email;
     private String title;
     private String content;
+    private Long userId;
 }

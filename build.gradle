@@ -47,6 +47,8 @@ dependencies {
 
 	//Test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
 //테스트용 도구들을 한꺼번에 넣어주는 스타터
 
 //	runtimeOnly 'mysql:mysql-connector-java' 얘보다는
