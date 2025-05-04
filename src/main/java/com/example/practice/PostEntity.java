@@ -34,6 +34,9 @@ public class PostEntity {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
+    private String username;
+
     // UserEntity와의 다대일 관계 설정
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
