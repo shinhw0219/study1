@@ -48,6 +48,7 @@ public class PostService {
     @Transactional
     public void createPost(PostUpdateRequest request) {
         PostEntity post = PostEntity.builder()
+
                 .title(request.getTitle())
                 .content(request.getContent())
                 .username(request.getName())   // name → username 매핑

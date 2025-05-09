@@ -20,7 +20,7 @@ public class PostEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String username;
 
     @Column(nullable = false)
     private String email;
@@ -34,12 +34,10 @@ public class PostEntity {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(nullable = false)
-    private String username;
 
     // UserEntity와의 다대일 관계 설정
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne( fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
     // JPA에서 사용하기 위한 protected 기본 생성자 (캡슐화를 위해 외부 접근 제한)
@@ -58,7 +56,7 @@ public class PostEntity {
     }
 
     public void updateFromDto(PostUpdateRequest dto) {
-        this.name = dto.getName();
+        this.username = dto.getName();
         this.email = dto.getEmail();
         this.title = dto.getTitle();
         this.content = dto.getContent();

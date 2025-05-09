@@ -73,7 +73,7 @@ public class PostController {
             postService.createPost(request); // DTO를 넘김
             return ResponseEntity.ok().body("만들었슈~~");
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body("제목 기반 게시글 생성 실패:" + e.getMessage());
+            return ResponseEntity.badRequest().body(null);
         }
     }
 
@@ -87,7 +87,7 @@ public class PostController {
             postService.PostUpdateRequest(id, request); // 응답 DTO는 사용하지 않음
             return ResponseEntity.ok("게시글 수정 완료!");
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body("수정 실패: " + e.getMessage());
+            return ResponseEntity.badRequest().body(null);
         }
     }
 
@@ -101,14 +101,14 @@ public class PostController {
             postService.updatePost(id, request); // 반환값 사용 안 함
             return ResponseEntity.ok("게시글 제목과 내용이 수정되었습니다.");
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body("수정 실패: " + e.getMessage());
+            return ResponseEntity.badRequest().body(null);
         }
     }
 
 
     //게시글 삭제
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deletePost(@PathVariable Long id) {
+    public ResponseEntity<String> deletePost(@PathVariable Long id) {
         try {
             postService.deletePost(id);
             return ResponseEntity.ok().build();

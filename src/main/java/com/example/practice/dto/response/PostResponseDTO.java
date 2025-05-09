@@ -15,4 +15,5 @@ public class PostResponseDTO {
     private String email;
     private String title;
     private String content;
+
 }
